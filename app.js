@@ -2,6 +2,7 @@
 var express = require('express'),
 	app = express(),
 	http = require('http'),
+	https = require('https'),
 	passport = require('passport'),
 	pg = require('pg-promise')({promiseLib: require('q')}),
 	cookieParser = require('cookie-parser'),
@@ -16,6 +17,7 @@ var express = require('express'),
 global.env = environment();
 global.$constant = require(__dirname+"/configs/server")[env];
 global.$rootPath = __dirname;
+global.$https = https;
 
 app.engine('ejs', cons.ejs);
 app.engine('handlebars', cons.handlebars);

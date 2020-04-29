@@ -1,6 +1,6 @@
 module.exports = {
     development: {
-    	host: '165.22.248.231',
+    	host: '',
 	    port: 5432,
 	    database: '',
 	    user: '',
