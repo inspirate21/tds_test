@@ -66,7 +66,8 @@ module.exports._publicRepo = function(req, res, next){
 module.exports._allRepo = function(req, res, next){
 
   let param = {
-    access_token : req.query.access_token
+    access_token : req.query.access_token,
+    is_private : req.query.is_private ? req.query.is_private : false
   }
 
   if(!util.checkParameters(param)){
@@ -95,24 +96,40 @@ module.exports._allRepo = function(req, res, next){
 
         let parseData = JSON.parse(data);
 
-        var output = {
-          data : []
+        let output = {
+          data : [],
+          private : []
         }
 
         for(let i in parseData){
           output.data.push({
-            repo_name : parseData[i].name,
-            private : parseData[i].private,
-            // owner : parseData[i].owner.login ? parseData[i].owner.login : null,
-            description : parseData[i].description,
-            language : parseData[i].language,
-            created_at : util.dateFormat(parseData[i].created_at),
-            updated_at : util.dateFormat(parseData[i].updated_at),
-            language : parseData[i].language
+              repo_name : parseData[i].name,
+              private : parseData[i].private,
+              owner : parseData[i].owner.login ? parseData[i].owner.login : null,
+              description : parseData[i].description,
+              language : parseData[i].language,
+              created_at : util.dateFormat(parseData[i].created_at),
+              updated_at : util.dateFormat(parseData[i].updated_at),
+              language : parseData[i].language
           });
+
+          if(parseData[i].private){
+            output.private.push({
+              repo_name : parseData[i].name,
+              private : parseData[i].private,
+              owner : parseData[i].owner.login ? parseData[i].owner.login : null,
+              description : parseData[i].description,
+              language : parseData[i].language,
+              created_at : util.dateFormat(parseData[i].created_at),
+              updated_at : util.dateFormat(parseData[i].updated_at),
+              language : parseData[i].language
+            });
+          }
         }
 
-        return response.success(res, output, "success");
+        let resultOutput = (param.is_private == 'true') ? output.private : output.data;
+
+        return response.success(res, resultOutput, "success");
       });
 
   }).on("error", (err) => {
