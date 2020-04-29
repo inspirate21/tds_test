@@ -25,6 +25,12 @@ module.exports.error = function(res, type, err){
 			message = "Username can not be null";
 			break;
 
+		case "miss_token":
+			statusCode = 400;
+			error = "Bad Request";
+			message = "Access token can not be null";
+			break;
+
 		default:
 			statusCode = 500;
 			error = "Error";
