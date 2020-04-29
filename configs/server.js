@@ -1,6 +1,6 @@
 module.exports = {
 	development : {
 		hostPath : "http://localhost",
-		port : 3000
+		port : 4000
 	},
 }
