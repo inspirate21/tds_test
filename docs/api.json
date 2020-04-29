@@ -1,2 +1,22 @@
 {
+	"/repo/public" : {
+		"method" : "get",
+		"description" : "Get all public repository",
+		"parameter" : [{
+			"name" : "id",
+			"type" : "varchar",
+			"required" : true,
+			"description" : "your username github"
+		}]
+	},
+	"/repo/all" : {
+		"method" : "get",
+		"description" : "Get all repository (public or private)",
+		"parameter" : [{
+			"name" : "access_token",
+			"type" : "varchar",
+			"required" : true,
+			"description" : "your access_token github, example my access_token is 77f88939048b3ea8fdce8bf8d5f1d6596df8f1a9"
+		}]
+	}
 }
