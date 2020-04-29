@@ -16,7 +16,7 @@
 			"name" : "access_token",
 			"type" : "varchar",
 			"required" : true,
-			"description" : "your access_token github, example my access_token is 77f88939048b3ea8fdce8bf8d5f1d6596df8f1a9"
+			"description" : "your access_token github"
 		}]
 	}
 }

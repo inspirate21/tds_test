@@ -105,7 +105,7 @@ module.exports._allRepo = function(req, res, next){
           output.data.push({
               repo_name : parseData[i].name,
               private : parseData[i].private,
-              owner : parseData[i].owner.login ? parseData[i].owner.login : null,
+              owner : parseData[i].owner ? parseData[i].owner.login : null,
               description : parseData[i].description,
               language : parseData[i].language,
               created_at : util.dateFormat(parseData[i].created_at),
@@ -117,7 +117,7 @@ module.exports._allRepo = function(req, res, next){
             output.private.push({
               repo_name : parseData[i].name,
               private : parseData[i].private,
-              owner : parseData[i].owner.login ? parseData[i].owner.login : null,
+              owner : parseData[i].owner ? parseData[i].owner.login : null,
               description : parseData[i].description,
               language : parseData[i].language,
               created_at : util.dateFormat(parseData[i].created_at),
