@@ -19,6 +19,12 @@ module.exports.error = function(res, type, err){
 			message = "Invalid request payload JSON format";
 			break;
 
+		case "miss_username":
+			statusCode = 400;
+			error = "Bad Request";
+			message = "Username can not be null";
+			break;
+
 		default:
 			statusCode = 500;
 			error = "Error";

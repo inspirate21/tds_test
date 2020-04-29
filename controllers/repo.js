@@ -5,7 +5,15 @@ let response = require(__dirname+"/../utils/response"),
 module.exports._publicRepo = function(req, res, next){
 
   let param = {
-    username : req.query.username ? req.query.username : null
+    username : req.query.username
+  }
+
+  if(!util.checkParameters(param)){
+    return response.error(res, "miss_param");
+  }
+
+  if(!param.username){
+    return response.error(res, "miss_username");
   }
 
   let options = {
@@ -34,7 +42,7 @@ module.exports._publicRepo = function(req, res, next){
           output.data.push({
             repo_name : parseData[i].name,
             private : parseData[i].private,
-            owner : parseData[i].owner.login,
+            owner : parseData[i].owner ? parseData[i].owner.login : null,
             description : parseData[i].description,
             language : parseData[i].language,
             created_at : util.dateFormat(parseData[i].created_at),
@@ -53,3 +61,4 @@ module.exports._publicRepo = function(req, res, next){
 
   request.end();
 }
+
