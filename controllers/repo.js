@@ -1,6 +1,5 @@
 let response = require(__dirname+"/../utils/response"),
-	util = require(__dirname+"/../utils/util")
-  https = require('https');
+	util = require(__dirname+"/../utils/util");
 
 
 module.exports._publicRepo = function(req, res, next){
@@ -16,7 +15,7 @@ module.exports._publicRepo = function(req, res, next){
       headers: {'user-agent': 'node.js'}
   };
 
-  var request = https.request(options, (result) => {
+  var request = $https.request(options, (result) => {
       let data = '';
 
       result.on('data', (chunk) => {
@@ -32,15 +31,14 @@ module.exports._publicRepo = function(req, res, next){
         }
 
         for(let i in parseData){
-
           output.data.push({
             repo_name : parseData[i].name,
             private : parseData[i].private,
             owner : parseData[i].owner.login,
             description : parseData[i].description,
             language : parseData[i].language,
-            created_at : parseData[i].created_at,
-            updated_at : parseData[i].updated_at,
+            created_at : util.dateFormat(parseData[i].created_at),
+            updated_at : util.dateFormat(parseData[i].updated_at),
             language : parseData[i].language
           });
         }
