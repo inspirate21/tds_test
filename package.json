@@ -5,7 +5,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "npm": "^6.5.0",
     "passport": "^0.3.2",
     "passport-jwt": "^4.0.0",
